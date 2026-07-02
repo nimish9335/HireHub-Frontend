@@ -5,6 +5,10 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import Jobs from "./pages/Jobs";
+
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
     return (
@@ -18,6 +22,11 @@ function App() {
                 />
 
                 <Route
+                    path="/jobs"
+                    element={<Jobs />}
+                />
+
+                <Route
                     path="/login"
                     element={<Login />}
                 />
@@ -25,6 +34,15 @@ function App() {
                 <Route
                     path="/register"
                     element={<Register />}
+                />
+
+                <Route
+                    path="/profile"
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
+                        </ProtectedRoute>
+                    }
                 />
 
             </Route>

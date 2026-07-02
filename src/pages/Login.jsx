@@ -1,11 +1,15 @@
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { setUser } from "../redux/authSlice";
 import API from "../services/api";
 
 function Login() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -34,6 +38,8 @@ function Login() {
                 "/user/login",
                 formData
             );
+
+            dispatch(setUser(response.data.user));
 
             toast.success(response.data.message);
 

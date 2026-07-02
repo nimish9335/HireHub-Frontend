@@ -1,13 +1,27 @@
-function Home() {
-    return (
-        <div className="flex justify-center items-center h-[80vh]">
+import { useSelector } from "react-redux";
 
-            <h1 className="text-5xl font-bold">
-                Welcome to HireHub
+function Home() {
+
+    const { user, isAuthenticated } = useSelector(
+        (state) => state.auth
+    );
+
+    return (
+
+        <div>
+
+            <h1 className="text-3xl font-bold">
+
+                {isAuthenticated
+                    ? `Welcome ${user.fullname}`
+                    : "Welcome Guest"}
+
             </h1>
 
         </div>
+
     );
+
 }
 
 export default Home;
